@@ -1,0 +1,402 @@
+/* ═══ الرموز اللونية ═══ */
+:root{
+  --k1:#17557f;--k1b:#eaf2f8;--k1c:#c3daea;--k1s:#17557f;--k1o:#ffffff;
+  --k2:#186547;--k2b:#e9f4ef;--k2c:#bfdfd0;--k2s:#186547;--k2o:#ffffff;
+  --k3:#8d5310;--k3b:#fbf2e5;--k3c:#ebd6b4;--k3s:#8d5310;--k3o:#ffffff;
+  --k4:#6a3f7a;--k4b:#f6eef9;--k4c:#dfc9e8;--k4s:#6a3f7a;--k4o:#ffffff;
+  --ink:#181818;--mut:#666666;--line:#dcdcdc;
+  --bg:#ffffff;--surface:#ffffff;--surface2:#fafafa;
+  --shadow:0 1px 2px rgba(0,0,0,.05);
+  --shadow-open:0 8px 26px rgba(0,0,0,.10);
+  --warn-bd:#b23b3b;--warn-bg:#fdf1f1;--warn-ink:#8e2020;
+  --chip:#333333;--chip-o:#ffffff;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --k1:#6fb3e0;--k1b:#132b3a;--k1c:#2a5470;--k1s:#1b4360;--k1o:#d6ecfa;
+    --k2:#5fc79a;--k2b:#12291f;--k2c:#235642;--k2s:#174d38;--k2o:#cfefe0;
+    --k3:#d9a35c;--k3b:#2b2016;--k3c:#57412a;--k3s:#6b4212;--k3o:#f6e2c4;
+    --k4:#c79ad9;--k4b:#241a2b;--k4c:#4b3557;--k4s:#553468;--k4o:#efe0f7;
+    --ink:#e6e6e6;--mut:#9aa4b0;--line:#2c333d;
+    --bg:#12151a;--surface:#1a1f26;--surface2:#161a20;
+    --shadow:0 1px 2px rgba(0,0,0,.4);
+    --shadow-open:0 8px 30px rgba(0,0,0,.55);
+    --warn-bd:#a35252;--warn-bg:#2a1a1a;--warn-ink:#f0a0a0;
+    --chip:#3a4350;--chip-o:#e6e6e6;
+  }
+}
+:root[data-theme="dark"]{
+  --k1:#6fb3e0;--k1b:#132b3a;--k1c:#2a5470;--k1s:#1b4360;--k1o:#d6ecfa;
+  --k2:#5fc79a;--k2b:#12291f;--k2c:#235642;--k2s:#174d38;--k2o:#cfefe0;
+  --k3:#d9a35c;--k3b:#2b2016;--k3c:#57412a;--k3s:#6b4212;--k3o:#f6e2c4;
+  --k4:#c79ad9;--k4b:#241a2b;--k4c:#4b3557;--k4s:#553468;--k4o:#efe0f7;
+  --ink:#e6e6e6;--mut:#9aa4b0;--line:#2c333d;
+  --bg:#12151a;--surface:#1a1f26;--surface2:#161a20;
+  --shadow:0 1px 2px rgba(0,0,0,.4);
+  --shadow-open:0 8px 30px rgba(0,0,0,.55);
+  --warn-bd:#a35252;--warn-bg:#2a1a1a;--warn-ink:#f0a0a0;
+  --chip:#3a4350;--chip-o:#e6e6e6;
+}
+
+/* لونُ القسم الجاري — تُقرأ من داخل كلِّ بطاقةٍ وسلكٍ ووسم */
+.s1{--a:var(--k1);--ab:var(--k1b);--ac:var(--k1c);--as:var(--k1s);--ao:var(--k1o)}
+.s2{--a:var(--k2);--ab:var(--k2b);--ac:var(--k2c);--as:var(--k2s);--ao:var(--k2o)}
+.s3{--a:var(--k3);--ab:var(--k3b);--ac:var(--k3c);--as:var(--k3s);--ao:var(--k3o)}
+.s4{--a:var(--k4);--ab:var(--k4b);--ac:var(--k4c);--as:var(--k4s);--ao:var(--k4o)}
+
+*{box-sizing:border-box}
+html{color-scheme:light dark}
+body{margin:0;padding:0 0 2rem;background:var(--bg);color:var(--ink);direction:rtl;text-align:right;
+  font-family:'Amiri',serif;font-size:15px;line-height:1.85;
+  -webkit-font-feature-settings:"liga","calt";font-feature-settings:"liga","calt";
+  transition:background .3s ease,color .3s ease}
+.wrap{max-width:1120px;margin:0 auto;padding:1.2rem}
+.id{direction:ltr;display:inline-block;font-family:Georgia,'Segoe UI',serif;font-size:.88em}
+
+.warn{border:1.5px solid var(--warn-bd);background:var(--warn-bg);border-radius:8px;
+  padding:.85rem 1.1rem;margin:1rem 0}
+.warn b{color:var(--warn-ink)}
+
+.levels{display:flex;flex-wrap:wrap;gap:.9rem;align-items:stretch;margin:1rem 0 1.4rem;
+  border:1px solid var(--line);border-radius:8px;padding:.8rem 1rem;background:var(--surface2);font-size:.9rem}
+.levels div{flex:1 1 200px}
+.levels .lv{display:inline-block;background:var(--chip);color:var(--chip-o);border-radius:4px;
+  padding:0 .45rem;font-size:.78rem;margin-left:.35rem}
+
+/* الجدولُ يَنزلق أفقيًّا في الشاشات الضيّقة بدل أن ينضغطَ فتنكسرَ العناوين */
+.keywrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-bottom:1.8rem}
+table.key{width:100%;border-collapse:collapse;font-size:.92rem}
+table.key th,table.key td{border:1px solid var(--line);padding:.5rem .65rem;vertical-align:top}
+table.key th{background:var(--surface2)}
+.sw{display:inline-block;width:.95rem;height:.95rem;border-radius:3px;vertical-align:-1px;margin-left:.35rem}
+
+/* ═══ الشريطُ العلوي ═══ */
+.topbar{position:sticky;top:0;z-index:50;background:var(--bg);
+  border-bottom:1px solid var(--line)}
+@supports (backdrop-filter:blur(2px)){
+  .topbar{background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(12px)}
+}
+.topbar-in{max-width:1120px;margin:0 auto;padding:.45rem 1.2rem;
+  display:flex;align-items:center;gap:.7rem}
+.tabs{position:relative;display:flex;gap:.2rem;flex:1;min-width:0;
+  overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{appearance:none;-webkit-appearance:none;background:none;border:0;font:inherit;font-size:.95rem;
+  color:var(--mut);cursor:pointer;padding:.5rem .85rem .6rem;border-radius:8px 8px 0 0;
+  white-space:nowrap;display:inline-flex;align-items:center;gap:.45rem;
+  transition:color .25s ease,background .25s ease}
+.tab:hover{background:var(--surface2);color:var(--ink)}
+.tab:focus-visible{outline:2px solid var(--a);outline-offset:-2px}
+.tab[aria-selected="true"]{color:var(--a);font-weight:700}
+.tab .sw{width:.7rem;height:.7rem;margin:0;border-radius:50%;background:var(--a);
+  opacity:.45;transition:opacity .25s ease}
+.tab[aria-selected="true"] .sw{opacity:1}
+.tabind{position:absolute;left:0;bottom:0;height:3px;width:0;border-radius:3px 3px 0 0;
+  background:var(--mut);pointer-events:none}
+
+.tools{display:flex;gap:.35rem;flex:none}
+.tool{appearance:none;-webkit-appearance:none;background:var(--surface);border:1px solid var(--line);
+  color:var(--ink);font:inherit;font-size:.84rem;cursor:pointer;border-radius:7px;
+  padding:.3rem .6rem;display:inline-flex;align-items:center;gap:.3rem;line-height:1.6;
+  transition:border-color .2s ease,background .2s ease,color .2s ease}
+.tool:hover{background:var(--surface2);border-color:var(--mut)}
+.tool:focus-visible{outline:2px solid var(--mut);outline-offset:2px}
+.tool .ic{font-size:1rem;line-height:1}
+@media (max-width:640px){ .tool .tx{display:none} }
+
+/* ═══ البانر ═══ */
+.sec{margin-bottom:2rem}
+/* بلا JS تبقى الأقسامُ الأربعةُ كلُّها ظاهرةً كالوثيقة الأصلية.
+   ومع JS يُخفيها هذا، ويُظهِر المطلوبَ منها اعتمادًا على data-tab
+   الذي يُضبَط في الرأس قبل أوّل رسمٍ — فلا تومض الأقسامُ الأخرى. */
+.js .panel{display:none}
+.js[data-tab="s1"] #s1,
+.js[data-tab="s2"] #s2,
+.js[data-tab="s3"] #s3,
+.js[data-tab="s4"] #s4{display:block}
+.banner{padding:.55rem .9rem;border-radius:8px;margin-bottom:1.1rem;
+  background:var(--as);color:var(--ao)}
+.banner .no{display:none}
+.banner h2{display:inline;margin:0;font-size:1.15rem;font-weight:700}
+.banner .line{display:block;font-size:.82rem;opacity:.88;margin-top:.1rem}
+.banner .tags{display:inline-flex;flex-wrap:wrap;gap:.3rem;
+  margin-inline-start:.55rem;vertical-align:middle}
+.banner .tags span{background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.38);
+  border-radius:999px;padding:0 .55rem;font-size:.76rem}
+
+
+/* ═══ الشجرة ═══ */
+.treewrap{position:relative}
+.wires{position:absolute;top:0;left:0;pointer-events:none;overflow:visible;z-index:0}
+.spine{fill:none;stroke:var(--ac);stroke-width:2;stroke-linecap:round}
+.wire{fill:none;stroke:var(--ac);stroke-width:1.6;stroke-linecap:round;
+  transition:stroke .3s ease,stroke-width .3s ease}
+.wire.on{stroke:var(--a);stroke-width:2.4}
+.node{fill:var(--bg);stroke:var(--ac);stroke-width:1.8;
+  transition:fill .3s ease,stroke .3s ease,r .3s ease}
+.node.on{fill:var(--a);stroke:var(--a)}
+
+.grid{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;
+  gap:.8rem 3.4rem;align-items:start}
+
+/* ═══ البطاقة — المستوى الأول ═══ */
+.card{width:100%;border:1px solid var(--line);border-radius:9px;margin:0;
+  background:var(--surface);box-shadow:var(--shadow);overflow:hidden;
+  break-inside:avoid;page-break-inside:avoid;
+  transition:border-color .3s ease,box-shadow .3s ease}
+.card.open{border-color:var(--ac);box-shadow:var(--shadow-open)}
+
+.chead{display:flex;align-items:center;gap:.55rem;width:100%;padding:.5rem .8rem;
+  background:var(--as);color:var(--ao);border:0;border-radius:0;
+  font:inherit;text-align:right;cursor:pointer;
+  transition:filter .2s ease}
+.chead:hover{filter:brightness(1.12)}
+.chead:focus-visible{outline:2px solid var(--ao);outline-offset:-4px}
+.chead h3{margin:0;font-size:1.08rem;font-weight:700;line-height:1.5;flex:1}
+.num{flex:none;width:1.5rem;height:1.5rem;border-radius:50%;background:rgba(255,255,255,.22);
+  border:1px solid rgba(255,255,255,.5);display:flex;align-items:center;justify-content:center;
+  font-size:.85rem;font-weight:700}
+.chev{flex:none;width:.85rem;height:.85rem;display:flex;align-items:center;justify-content:center;opacity:.9}
+.chev i{display:block;width:.5rem;height:.5rem;border-right:2px solid currentColor;
+  border-bottom:2px solid currentColor;transform:rotate(45deg) translate(-1px,-1px)}
+
+/* ═══ الصفوف — المستويان الثاني والثالث ═══ */
+.rows{overflow:hidden;padding-block:0;padding-inline:.85rem .6rem;position:relative}
+.js .card:not(.open) .rows{height:0}
+.js .card:not(.open) .rows .r{opacity:0}
+
+/* المستوى ٢ سطرٌ مستقلٌّ بعُقدةٍ صغيرة، والمستوى ٣ عُقَدٌ منفصلةٌ تحته
+   — لا عمودان، لئلّا تُقرأ البطاقةُ جدولًا */
+.r{position:relative;display:block;padding:.4rem .25rem;border-top:1px dotted var(--line)}
+.r:first-child{border-top:none;padding-top:.55rem}
+.r:last-child{padding-bottom:.6rem}
+
+.k{display:flex;align-items:center;gap:.4rem;margin-bottom:.28rem;
+  font-weight:700;font-size:.95rem;line-height:1.6;color:var(--a)}
+.k::before{content:'';flex:none;width:.42rem;height:.42rem;border-radius:50%;background:var(--a)}
+
+.v{position:relative;display:flex;flex-wrap:wrap;gap:.3rem .35rem;padding-inline-start:.95rem}
+.v::before{content:'';position:absolute;top:.2rem;bottom:.2rem;inset-inline-start:.19rem;
+  border-inline-start:1px dashed var(--ac)}
+
+.chip{display:inline-block;background:var(--ab);border:1px solid var(--ac);
+  border-radius:999px;padding:.02rem .6rem;font-size:.9rem;line-height:1.75}
+.chip.long{display:block;width:100%;background:none;border:0;border-radius:0;
+  border-inline-start:2px solid var(--ac);padding:.02rem .55rem;font-size:.92rem;color:var(--ink)}
+
+footer{margin-top:1.6rem;padding-top:.8rem;border-top:1px solid var(--line);
+  font-size:.86rem;color:var(--mut)}
+
+/* ═══ لوحةُ «؟» — كلُّ ما كان يزاحم الخريطةَ صار هنا ═══ */
+dialog.about{position:fixed;inset:0;margin:auto;border:0;padding:0;
+  width:min(46rem,92vw);max-height:86vh;border-radius:12px;
+  background:var(--bg);color:var(--ink);box-shadow:0 20px 60px rgba(0,0,0,.35);
+  direction:rtl;text-align:right;font-family:'Amiri',serif}
+dialog.about::backdrop{background:rgba(0,0,0,.55)}
+dialog.about:not([open]){display:none}
+.about-in{padding:1.3rem 1.5rem 1rem;max-height:86vh;overflow-y:auto}
+.about-in h2{margin:0 0 .5rem;font-size:1.3rem}
+.about-in .meta{padding-bottom:.7rem;border-bottom:1px solid var(--line);
+  display:flex;flex-wrap:wrap;gap:.25rem 1.4rem;font-size:.9rem;color:var(--mut)}
+.about-in .keywrap{margin-bottom:1rem}
+.about-in footer{margin-top:1rem}
+.about .x{position:absolute;top:.55rem;left:.7rem;z-index:2;
+  appearance:none;-webkit-appearance:none;background:var(--surface2);
+  border:1px solid var(--line);color:var(--ink);border-radius:7px;
+  width:1.9rem;height:1.9rem;font:inherit;font-size:.9rem;cursor:pointer;line-height:1}
+.about .x:hover{border-color:var(--mut)}
+
+/* ═══════════ عرضُ المدار — نواةٌ وكواكبُ حولها ═══════════
+   الشجرةُ والمدارُ يتقاسمان نفسَ الـDOM: لا تُنسَخ بطاقةٌ ولا يُعاد بناؤها،
+   إنّما يتغيّر تموضعُها. و data-view يُضبَط في الرأس قبل أوّل رسم. */
+.hub{display:none}
+.js[data-view="orbit"] .banner{display:none}
+.js[data-view="orbit"] .treewrap{position:relative;min-height:var(--orbit-h,620px)}
+.js[data-view="orbit"] .grid{display:block;position:absolute;inset:0;padding:0;gap:0}
+
+/* النواة */
+.js[data-view="orbit"] .hub{display:block;position:absolute;z-index:2;
+  top:50%;left:50%;transform:translate(-50%,-50%);
+  width:var(--hub-w,420px);overflow:hidden;
+  border:1px solid var(--ac);border-radius:14px;background:var(--surface);
+  box-shadow:var(--shadow-open)}
+.hub .sun{padding:.9rem 1.1rem;background:var(--as);color:var(--ao);text-align:center}
+.hub .sun h2{margin:0;font-size:1.15rem;font-weight:700}
+.hub .sun .tags{display:inline-flex;flex-wrap:wrap;gap:.3rem;justify-content:center;margin-top:.4rem}
+.hub .sun .tags span{background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.38);
+  border-radius:999px;padding:0 .55rem;font-size:.76rem}
+
+/* الكواكب */
+.js[data-view="orbit"] .card{position:absolute;top:0;left:0;width:auto;
+  box-shadow:var(--shadow);will-change:transform}
+.js[data-view="orbit"] .card .rows{display:none}
+.js[data-view="orbit"] .chead{padding:.4rem .7rem;gap:.45rem}
+.js[data-view="orbit"] .chead h3{font-size:.95rem;max-width:var(--planet-w,15rem);
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.js[data-view="orbit"] .chev{display:none}
+.js[data-view="orbit"] .card.sel{border-color:var(--a);box-shadow:var(--shadow-open);z-index:3}
+.js[data-view="orbit"] .card.sel .chead{filter:brightness(1.15)}
+
+/* قيمةٌ ابتدائيةٌ فقط: JS يضيّقها أكثرَ إن ضاق المدارُ عن العناوين */
+@media screen and (min-width:760px) and (max-width:1023px){
+  .js[data-view="orbit"] .treewrap{--planet-w:11rem}
+  .js[data-view="orbit"] .chead{font-size:.9rem}
+}
+/* دون هذا العرض لا مدارَ: ثلاثةَ عشرَ عنوانًا عربيًّا لا تُقرأ في راحة اليد */
+@media screen and (max-width:759px){
+  .js[data-view="orbit"] .banner{display:block}
+  .js[data-view="orbit"] .hub,
+  .js[data-view="orbit"] .orb{display:none}
+  .js[data-view="orbit"] .treewrap{min-height:0}
+  .js[data-view="orbit"] .grid{display:grid;position:static;
+    grid-template-columns:1fr;gap:.7rem;padding-inline-start:2.3rem}
+  .js[data-view="orbit"] .card{position:relative;width:100%}
+  .js[data-view="orbit"] .card .rows{display:block}
+  .js[data-view="orbit"] .chev{display:flex}
+  .js[data-view="orbit"] .chead h3{max-width:none;white-space:normal;overflow:visible}
+  .js-view{display:none!important}
+}
+
+/* آخرُ درجات التضييق: لا يبقى إلّا الرقم، فيتّسع قلبُ المدار.
+   والعنوانُ الكاملُ يظهر عند اللمس أو التركيز فلا تصير الخريطةُ
+   ثلاثةَ عشرَ قرصًا بلا هُويّة. */
+.js[data-view="orbit"] .treewrap.numonly .chead h3{display:none}
+.js[data-view="orbit"] .treewrap.numonly .chead{padding:.3rem;border-radius:999px}
+.js[data-view="orbit"] .treewrap.numonly .card{border-radius:999px}
+.js[data-view="orbit"] .treewrap.numonly .chead .num{width:1.7rem;height:1.7rem;font-size:.9rem}
+
+
+/* ═══════════ الكاميرا ═══════════
+   ‏.treewrap إطارٌ ثابتٌ يقصّ، و.stage عالَمٌ كبيرٌ يتحرّك داخله بـ transform.
+   كلُّ حساباتِ المدار تجري بإحداثيات العالَم؛ الكاميرا وحدَها تُحوِّلها للشاشة. */
+.js[data-view="orbit"] .treewrap{overflow:hidden}
+.stage{position:absolute;top:0;left:0;width:100%;height:100%;transform-origin:0 0}
+.js[data-view="orbit"] .stage{will-change:transform}
+.js[data-view="orbit"] .card .chead,
+.js[data-view="orbit"] .orb.on{cursor:pointer}
+
+/* ═══════════ شبكةُ الموضوع ═══════════ */
+.web{display:none}
+.js[data-view="orbit"] .web{display:block;position:absolute;top:0;left:0;
+  width:100%;height:100%;z-index:1;pointer-events:none}
+.wnode{position:absolute;pointer-events:auto;
+  transform:translate(-50%,-50%);box-sizing:border-box}
+/* لِبْنةُ الفرع — المستوى الثاني */
+.wnode.branch{width:max-content;max-width:17rem;padding:.3rem .7rem;border-radius:8px;
+  background:var(--as);color:var(--ao);font-weight:700;font-size:.92rem;
+  line-height:1.55;box-shadow:var(--shadow)}
+/* لِبْنةُ البند — المستوى الثالث، بعرضٍ ثابتٍ والنصُّ يلتفّ */
+/* عرضٌ بقدر النصِّ حتى سقفٍ ثمّ يلتفّ — الثابتُ كان يترك فراغًا واسعًا */
+.wnode.leaf{width:max-content;max-width:16.5rem;padding:.28rem .65rem;border-radius:8px;
+  background:var(--ab);border:1px solid var(--ac);color:var(--ink);
+  font-size:.88rem;line-height:1.7}
+.wnode.leaf b{color:var(--a)}
+.wire2{fill:none;stroke:var(--a);stroke-width:1.7;stroke-linecap:round;opacity:.75}
+.wire3{fill:none;stroke:var(--ac);stroke-width:1.3;stroke-linecap:round}
+/* الكواكبُ التي تنحّت تخفت لئلّا تُزاحمَ الشبكة */
+.js[data-view="orbit"] .card.dim{opacity:.32}
+/* وتنزل تحتها أيضًا ولا تلتقط لمسةً، فتصير كأنّها ليست هناك.
+   ‏.grid و.web كلاهما z-index:1، و.grid بعدَه في الـDOM — فكان كلُّ كوكبٍ
+   يعلو كلَّ بند. وإسقاطُ z-index عن .grid يفكُّ سياقَ تراكمه: يهبط الباهتُ
+   (تلقائيّ) تحت .web (١)، ويبقى المفتوحُ (٣) وحدَه فوقها. */
+.js[data-view="orbit"] .treewrap.webopen .grid{z-index:auto}
+.js[data-view="orbit"] .treewrap.webopen .card.dim{pointer-events:none}
+/* حين تُفتَح شبكةٌ تقترب الكاميرا حتى تخرج النواةُ من الإطار، فلا يبقى منها
+   إلّا رُكنٌ داخلٌ يشوّش. تُطوى حتى يعود مَن أغلق. */
+.js[data-view="orbit"] .hub{transition:opacity .45s ease}
+.js[data-view="orbit"] .treewrap.webopen .hub{opacity:0;pointer-events:none}
+/* وأسلاكُ الكواكب المنزاحة تبقى ممتدّةً إلى خارج الإطار، فتترك رذاذًا من
+   الخطوط في النصف الفارغ. يبقى سلكُ المفتوح وحدَه. */
+.js[data-view="orbit"] .wire,
+.js[data-view="orbit"] .node{transition:opacity .35s ease}
+.js[data-view="orbit"] .treewrap.webopen .wire:not(.on),
+.js[data-view="orbit"] .treewrap.webopen .node:not(.on){opacity:0}
+.js[data-view="orbit"] .card.dim .chead{filter:none}
+
+/* جُرمَا الكوكبين المجاورين — بديلُ السهمين المجرَّدين.
+   يحملان رقمَ الموضوع وعنوانَه فيُرى إلى أين تذهب قبل النقر.
+   موضعُهما مرنٌ: يتبع الكوكبَ الحقيقيَّ ما دام داخلَ الإطار،
+   وإلّا انحصر عند الحافّة فيبقى في المتناول دائمًا. */
+.orb{display:none}
+.js[data-view="orbit"] .orb.on{display:flex;position:absolute;z-index:6;
+  align-items:center;gap:.45rem;transform:translate(-50%,-50%);
+  padding:.28rem .8rem .28rem .35rem;border-radius:999px;cursor:pointer;
+  max-width:16rem;background:var(--surface);border:1px solid var(--ac);
+  color:var(--a);font:inherit;font-size:.86rem;line-height:1.7;
+  box-shadow:var(--shadow-open);
+  transition:background .2s ease,border-color .2s ease}
+.orb .onum{flex:none;width:1.6rem;height:1.6rem;border-radius:50%;
+  background:var(--a);color:var(--bg);display:flex;align-items:center;
+  justify-content:center;font-size:.8rem;font-weight:700}
+.orb .otitle{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.js[data-view="orbit"] .orb.on:hover{background:var(--ab);border-color:var(--a)}
+.js[data-view="orbit"] .orb.on:focus-visible{outline:2px solid var(--a);outline-offset:2px}
+@media screen and (max-width:759px){ .js[data-view="orbit"] .orb{display:none} }
+
+/* ═══ الشاشاتُ الصغيرة ═══ */
+@media screen and (max-width:820px){
+  .grid{grid-template-columns:1fr;gap:.7rem;padding-inline-start:2.3rem}
+  .k{flex-basis:38%}
+  .banner h2{font-size:1.25rem}
+  table.key{min-width:34rem}
+}
+
+/* ═══ من يكره الحركة ═══ */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important}
+}
+
+/* ═══ الطباعة — A4 ═══ */
+@page{size:A4;margin:12mm 11mm}
+@media print{
+  :root{
+    --k1:#17557f;--k1b:#eaf2f8;--k1c:#c3daea;--k1s:#17557f;--k1o:#ffffff;
+    --k2:#186547;--k2b:#e9f4ef;--k2c:#bfdfd0;--k2s:#186547;--k2o:#ffffff;
+    --k3:#8d5310;--k3b:#fbf2e5;--k3c:#ebd6b4;--k3s:#8d5310;--k3o:#ffffff;
+    --k4:#6a3f7a;--k4b:#f6eef9;--k4c:#dfc9e8;--k4s:#6a3f7a;--k4o:#ffffff;
+    --ink:#181818;--mut:#666666;--line:#dcdcdc;
+    --bg:#ffffff;--surface:#ffffff;--surface2:#fafafa;
+    --warn-bd:#b23b3b;--warn-bg:#fdf1f1;--warn-ink:#8e2020;--chip:#333333;--chip-o:#fff;
+  }
+  body{font-size:10.4px;line-height:1.65;background:#fff;color:#181818}
+  .wrap{max-width:none;padding:0}
+  .topbar,.wires,.chev{display:none!important}
+  .panel,.panel[hidden]{display:block!important}
+  .sec{break-before:page;page-break-before:always;margin-bottom:0}
+  .about,.panel:first-of-type .sec{break-before:auto;page-break-before:auto}
+  .grid{grid-template-columns:1fr 1fr!important;gap:.6rem!important;padding-inline-start:0!important}
+  .keywrap{overflow:visible!important}
+  table.key{min-width:0!important}
+  /* فتحُ كلِّ البطاقات رغمًا عن أنماط GSAP السطرية */
+  /* الورقُ شجرةٌ دائمًا، أيًّا كان العرضُ على الشاشة */
+  .hub,.orb,.web{display:none!important}
+  .stage{position:static!important;transform:none!important;
+    width:auto!important;height:auto!important}
+  .banner{display:block!important}
+  .treewrap{min-height:0!important;position:static!important}
+  .grid{display:grid!important;position:static!important}
+  .card{position:relative!important;width:100%!important}
+  .card .rows{display:block!important}
+  .chead h3{max-width:none!important;white-space:normal!important;overflow:visible!important}
+  /* اللوحةُ تحلُّ محلَّ الغلاف المحذوف في أوّل الورق */
+  dialog.about,dialog.about:not([open]){display:block!important;position:static!important;
+    width:auto!important;max-height:none!important;box-shadow:none!important;
+    border:1px solid #dcdcdc!important;border-radius:8px!important;margin-bottom:1.2rem!important}
+  .about-in{max-height:none!important;overflow:visible!important;padding:.8rem 1rem!important}
+  .about .x{display:none!important}
+  /* أعِدِ العمودين: الورقُ يضيق عن العُقَد المنفصلة */
+  .r{display:flex!important;gap:.5rem!important;padding:.28rem .25rem!important}
+  .k{flex:0 0 33%!important;display:block!important;margin:0!important}
+  .k::before{display:none!important}
+  .v{display:block!important;flex:1!important;padding-inline-start:0!important}
+  .v::before{display:none!important}
+  .chip,.chip.long{display:inline!important;background:none!important;border:0!important;
+    border-radius:0!important;padding:0!important;width:auto!important;font-size:inherit!important}
+  .chip + .chip::before{content:' · '}
+  .card .rows{height:auto!important;overflow:visible!important}
+  .card .rows .r{opacity:1!important;transform:none!important}
+  .card{box-shadow:none!important;border-color:#dcdcdc!important}
+  .chead{cursor:auto}
+  .banner,.note,.warn,.chead,table.key th,.levels{
+    -webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
